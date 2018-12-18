@@ -5,12 +5,12 @@
 
 int main(int argc, char *argv[]) {
 	float result = 0.0;
-	int i = 1;
+	int i = 0;
 	do
 	{
+		i++;
 		result = result + 1.0/i;
 		//printf("%f\n",result);
-		i++;
 	}
 	while(result <= 5.0);
 	
