@@ -13,12 +13,39 @@ int main(int argc, char *argv[]) {
 	
 	float a[N][N];
 	
-	for(i = 0;i < N;i++)
+	int ok;
+	printf("Create matrix by:\n1 - random\n2 - from console ");
+	scanf("%d",&ok);
+	switch (ok)
 	{
-		for(j = 0;j < N;j++)
-		{
-			a[i][j] = -10 + rand() %20; 
-		}
+		case 1:
+			for(i = 0;i < N;i++)
+			{
+				for(j = 0;j < N;j++)
+				{
+					a[i][j] = -10 + rand() %20; 
+				}
+			}
+		break;
+		case 2:
+			for(i = 0;i < N;i++)
+			{
+				for(j = 0;j < N;j++)
+				{
+					printf("Enter element: i = %d, j = %d ",i,j);
+					scanf("%f",&a[i][j]);
+				}
+			}
+		break;
+		default:
+			for(i = 0;i < N;i++)
+			{
+				for(j = 0;j < N;j++)
+				{
+					a[i][j] = -10 + rand() %20; 
+				}
+			}
+		break;
 	}
 	
 	i = N/2;
