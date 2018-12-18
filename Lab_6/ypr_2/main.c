@@ -10,10 +10,9 @@ int main(int argc, char *argv[])
 	int sum = 0, oldsum = 0;
 	printf("Enter N ");
 	scanf("%d",&N);
-	//float a[N][N];
 	
 	int *a;
-	if (!(a=(int*)calloc(N,sizeof(int)))) 
+	if (!(a=(int*)calloc(N*N,sizeof(int)))) 
 	{
 		puts("Not enough memory"); 
 		getch();
@@ -23,7 +22,7 @@ int main(int argc, char *argv[])
 	{
 		for(j = 0;j < N;j++)
 		{
-			*((a+i)+j) = 1;//-10 + rand() %20; 
+			*((a+i*N)+j) = 1; //-10 + rand() %20; 
 		}
 	}
 	
@@ -31,17 +30,16 @@ int main(int argc, char *argv[])
 	{
 		for(j = 0;j < N;j++)
 		{
-			printf("%d\t",*((a+i)+j));
+			printf("%d\t",*((a+i*N)+j));
 		}
 		printf("\n\n");
 	}
-	
 	for(i = 0;i < N;i++)
 	{
 		sum = 0;
 		for(j = 0;j < N;j++)
 		{
-			sum += *((a+i)+j);
+			sum += *((a+i*N)+j);
 		}
 		if(i == 0)
 		{
@@ -50,45 +48,44 @@ int main(int argc, char *argv[])
 		if(oldsum != sum)
 		{
 			printf("This is not a magic square  ");
+			free(a);
 			return 0;
 		}
 	}
-	
 	for(i = 0;i < N;i++)
 	{
 		sum = 0;
 		for(j = 0;j < N;j++)
 		{
-			sum += *((a+j)+i);
-		}
-		if(i == 0)
-		{
-			oldsum = sum;
+			sum += *((a+j*N)+i);
 		}
 		if(oldsum != sum)
 		{
 			printf("This is not a magic square  ");
+			free(a);
 			return 0;
 		}
 	}
 	sum = 0;
 	for(i = 0;i < N;i++)
 	{
-		sum += *((a+i)+i);
+		sum += *((a+i*N)+i);
 	}
 	if(oldsum != sum)
 	{
 		printf("This is not a magic square  ");
+		free(a);
 		return 0;
 	}
 	sum = 0;
 	for(i = 0;i < N;i++)
 	{
-		sum += *((a+N-i-1)+i);
+		sum += *((a+(N-i-1)*N)+i);
 	}
 	if(oldsum != sum)
 	{
-		printf("This is not a magic square  ");
+		printf("This is not a magic square ");
+		free(a);
 		return 0;
 	}
 	

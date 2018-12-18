@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
 	srand(time(NULL));
 	int n, i, maxIndx, minIndx;
-	float sum = 0.0, nsum = 0.0, min , max;
+	float sum = 1.0, nsum = 0.0, min , max;
 	
 	printf("Enter n ");
 	scanf("%d",&n);
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 	
 	for(i = 0;i < n;i++)
 	{
-		*(a+i) = (-10 + rand() % 20)/10.0; 
+		*(a+i) = (-100 + rand() % 200)/10.0; 
 	}
 	for(i = 0;i < n;i++)
 	{
@@ -51,21 +51,26 @@ int main(int argc, char *argv[])
 			maxIndx = i;
 		}
 	}
+	printf("%d, %d\n",maxIndx,minIndx);
 	if(maxIndx < minIndx)
 	{
-		for(i = maxIndx;i < minIndx;i++)
+		for(i = maxIndx;i <= minIndx;i++)
 		{
-			sum += *(a+i);
+			sum *= *(a+i);
 		}
-		printf("sum = %f\n",sum);
+		printf("multiplication result = %f\n",sum);
 	}
 	else
 	{
-		printf("Iposible colculate sum because maxIndx > minIndx\n");
+		for(i = minIndx;i <= maxIndx;i++)
+		{
+			sum *= *(a+i);
+		}
+		printf("multiplication result = %f\n",sum);
 	}
 
 	
-	printf("nsum = %f",nsum);
+	printf("negative sum = %f",nsum);
 	
 	
 	free(a);
